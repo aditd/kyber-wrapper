@@ -1,0 +1,1 @@
+/Library/Developer/CommandLineTools/usr/bin/cc  -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX13.1.sdk -Wl,-search_paths_first -Wl,-headerpad_max_install_names "CMakeFiles/test_kex512-90s_ref.dir/test_kex.o" "CMakeFiles/test_kex512-90s_ref.dir/randombytes.o" -o test_kex512-90s_ref  libkyber512_90s_ref.dylib libaes256ctr_ref.dylib libsha2_ref.dylib 

@@ -1,0 +1,1 @@
+/Library/Developer/CommandLineTools/usr/bin/cc  -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX13.1.sdk -dynamiclib -Wl,-headerpad_max_install_names -o libfips202_ref.dylib -install_name /Users/rdx/kyber/ref/build/libfips202_ref.dylib CMakeFiles/fips202_ref.dir/fips202.o 

@@ -1,0 +1,1 @@
+/Library/Developer/CommandLineTools/usr/bin/cc  -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX13.1.sdk -dynamiclib -Wl,-headerpad_max_install_names -o libsha2_ref.dylib -install_name /Users/rdx/kyber/ref/build/libsha2_ref.dylib CMakeFiles/sha2_ref.dir/sha256.o CMakeFiles/sha2_ref.dir/sha512.o 
