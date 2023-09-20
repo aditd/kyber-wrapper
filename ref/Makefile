@@ -52,6 +52,10 @@ shared: \
   libpqcrystals_aes256ctr_ref.so \
   libpqcrystals_sha2_ref.so
 
+shared_mac: \
+	libpqcrystals_kyber512_ref.dylib
+
+
 libpqcrystals_fips202_ref.so: fips202.c fips202.h
 	$(CC) -shared -fPIC $(CFLAGS) fips202.c -o libpqcrystals_fips202_ref.so
 
@@ -60,6 +64,10 @@ libpqcrystals_aes256ctr_ref.so: aes256ctr.c aes256ctr.h
 
 libpqcrystals_sha2_ref.so: sha256.c sha512.c sha2.h
 	$(CC) -shared -fPIC $(CFLAGS) sha256.c sha512.c -o libpqcrystals_sha2_ref.so
+
+libpqcrystals_kyber512_ref.dylib: $(SOURCES) $(HEADERS) symmetric-shake.c fips202.c randombytes.c
+	$(CC) -dynamiclib -fPIC $(CFLAGS) -DKYBER_K=2 \
+	  -o $@ $(SOURCES) symmetric-shake.c fips202.c randombytes.c
 
 libpqcrystals_kyber512_ref.so: $(SOURCES) $(HEADERS) symmetric-shake.c
 	$(CC) -shared -fPIC $(CFLAGS) -DKYBER_K=2 $(SOURCES) symmetric-shake.c -o libpqcrystals_kyber512_ref.so
