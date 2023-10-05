@@ -1,16 +1,6 @@
 from ctypes import cdll, cast, create_string_buffer
 from ctypes import c_int, c_ubyte, POINTER, c_uint8, c_size_t
 import ctypes as ct  
-# OQS_SIG_keypair(uint8_t *public_key, uint8_t *secret_key) 
-kyber512_SECRETKEYBYTES = 1632
-kyber512_PUBLICKEYBYTES = 800
-kyber512_CIPHERTEXTBYTES = 768
-kyber512_SHAREDSECRETBYTES = 32
-#define pqcrystals_kyber512_SECRETKEYBYTES 1632
-#define pqcrystals_kyber512_PUBLICKEYBYTES 800
-#define pqcrystals_kyber512_CIPHERTEXTBYTES 768
-#define pqcrystals_kyber512_BYTES 32
-
 
 import pathlib
 
@@ -24,12 +14,11 @@ else:
 
 
 kyb_keypair = libdil.pqcrystals_kyber512_ref_keypair
-kyb_encrypt = libdil.pqcrystals_kyber512_ref_enc
+kyb_encap = libdil.pqcrystals_kyber512_ref_enc
 kyb_decrypt = libdil.pqcrystals_kyber512_ref_dec
+kyb_encrypt = libdil.pqcrystals_kyber512_ref_encrypt
 
-
-
-class Kyber():
+class Kyber512():
     """
     Attributes
     ----------
@@ -59,21 +48,26 @@ class Kyber():
     decap(self, ciphertext):
         Returns the shared secret decrypted from the ciphertext
     """
-    def __init__(self, name = "Test", file="", is_kem=True):
+    length_secret_key = 1632
+    length_public_key = 800
+    length_ciphertext =  768
+    length_shared_secret = 32
+
+    def __init__(self, name = "Test", secret_key=False, public_key=False):
         self.name = name
-        if file=="":
-            rv = self.keygen()
-        else:
-            self.public_key = 
-            self.public_key = 2
+        if secret_key:
+            self.secret_key = ct.create_string_buffer(secret_key, self.length_secret_key)
+        if public_key:
+            self.public_key = ct.create_string_buffer(public_key, self.length_public_key)
+        
 
     def keygen(self):
-        self.public_key = create_string_buffer(kyber512_PUBLICKEYBYTES)
-        self.secret_key = create_string_buffer(kyber512_SECRETKEYBYTES)
+        self.public_key = create_string_buffer(self.length_public_key)
+        self.secret_key = create_string_buffer(self.length_secret_key)
         kyb_keypair(ct.byref(self.public_key), ct.byref(self.secret_key))
         return bytes(self.public_key), bytes(self.secret_key)
            
-    def encap(self, shared_key = None):
+    def encap(self, shared_secret = None):
         """
         Returns the ciphertext and the shared secret
 
@@ -86,9 +80,13 @@ class Kyber():
             the shared secret. size is 32 bytes when using Kyber512
         """
         # my_public_key = ct.create_string_buffer(self.public_key, kyber512_PUBLICKEYBYTES)
-        ciphertext = ct.create_string_buffer(kyber512_CIPHERTEXTBYTES)
-        shared_secret = ct.create_string_buffer(kyber512_SHAREDSECRETBYTES)
-        rv = kyb_encrypt(ct.byref(ciphertext), ct.byref(shared_secret), self.public_key)
+        ciphertext = ct.create_string_buffer(self.length_ciphertext)
+        if shared_secret:
+            shared_secret = ct.create_string_buffer(shared_secret, self.length_shared_secret)
+            rv = kyb_encrypt(ct.byref(ciphertext), ct.byref(shared_secret), self.public_key)
+        else:
+            shared_secret = ct.create_string_buffer(self.length_shared_secret)
+            rv = kyb_encap(ct.byref(ciphertext), ct.byref(shared_secret), self.public_key)
         return bytes(ciphertext), bytes(shared_secret)
 
     def decap(self, ciphertext):
@@ -99,8 +97,8 @@ class Kyber():
         ----------
         ciphertext: bytes
         """
-        my_ciphertext = ct.create_string_buffer(ciphertext, kyber512_CIPHERTEXTBYTES)
-        shared_secret = ct.create_string_buffer(kyber512_SHAREDSECRETBYTES)
+        my_ciphertext = ct.create_string_buffer(ciphertext, self.length_ciphertext)
+        shared_secret = ct.create_string_buffer(self.length_shared_secret)
         rv = kyb_decrypt(ct.byref(shared_secret), my_ciphertext, self.secret_key)
         return bytes(shared_secret)
     
@@ -108,3 +106,16 @@ class Kyber():
     def __repr__(self):
         return str(self.details)
     
+# import secrets
+
+# random_bytes = secrets.token_bytes(32)
+
+# # print("random:", random_bytes)
+# x = Kyber512()
+# x.keygen()
+# cipher, ss = x.encap()
+
+# print("shared secret:", ss)
+
+# decrypted = x.decap(cipher)
+# print("decrypted:",decrypted)

@@ -15,6 +15,7 @@
 
 int pqcrystals_kyber512_ref_keypair(uint8_t *pk, uint8_t *sk);
 int pqcrystals_kyber512_ref_enc(uint8_t *ct, uint8_t *ss, const uint8_t *pk);
+int pqcrystals_kyber512_ref_encrypt(uint8_t *ct, uint8_t *ss, const uint8_t *pk);
 int pqcrystals_kyber512_ref_dec(uint8_t *ss, const uint8_t *ct, const uint8_t *sk);
 
 #define pqcrystals_kyber512_90s_ref_SECRETKEYBYTES pqcrystals_kyber512_SECRETKEYBYTES
@@ -24,6 +25,7 @@ int pqcrystals_kyber512_ref_dec(uint8_t *ss, const uint8_t *ct, const uint8_t *s
 
 int pqcrystals_kyber512_90s_ref_keypair(uint8_t *pk, uint8_t *sk);
 int pqcrystals_kyber512_90s_ref_enc(uint8_t *ct, uint8_t *ss, const uint8_t *pk);
+int pqcrystals_kyber512_90s_ref_encrypt(uint8_t *ct, uint8_t *ss, const uint8_t *pk);
 int pqcrystals_kyber512_90s_ref_dec(uint8_t *ss, const uint8_t *ct, const uint8_t *sk);
 
 #define pqcrystals_kyber768_SECRETKEYBYTES 2400
@@ -38,6 +40,7 @@ int pqcrystals_kyber512_90s_ref_dec(uint8_t *ss, const uint8_t *ct, const uint8_
 
 int pqcrystals_kyber768_ref_keypair(uint8_t *pk, uint8_t *sk);
 int pqcrystals_kyber768_ref_enc(uint8_t *ct, uint8_t *ss, const uint8_t *pk);
+int pqcrystals_kyber768_ref_encrypt(uint8_t *ct, uint8_t *ss, const uint8_t *pk);
 int pqcrystals_kyber768_ref_dec(uint8_t *ss, const uint8_t *ct, const uint8_t *sk);
 
 #define pqcrystals_kyber768_90s_ref_SECRETKEYBYTES pqcrystals_kyber768_SECRETKEYBYTES
@@ -48,6 +51,7 @@ int pqcrystals_kyber768_ref_dec(uint8_t *ss, const uint8_t *ct, const uint8_t *s
 int pqcrystals_kyber768_90s_ref_keypair(uint8_t *pk, uint8_t *sk);
 int pqcrystals_kyber768_90s_ref_enc(uint8_t *ct, uint8_t *ss, const uint8_t *pk);
 int pqcrystals_kyber768_90s_ref_dec(uint8_t *ss, const uint8_t *ct, const uint8_t *sk);
+int pqcrystals_kyber768_90s_ref_encrypt(uint8_t *ct, uint8_t *ss, const uint8_t *pk);
 
 #define pqcrystals_kyber1024_SECRETKEYBYTES 3168
 #define pqcrystals_kyber1024_PUBLICKEYBYTES 1568
@@ -62,6 +66,7 @@ int pqcrystals_kyber768_90s_ref_dec(uint8_t *ss, const uint8_t *ct, const uint8_
 int pqcrystals_kyber1024_ref_keypair(uint8_t *pk, uint8_t *sk);
 int pqcrystals_kyber1024_ref_enc(uint8_t *ct, uint8_t *ss, const uint8_t *pk);
 int pqcrystals_kyber1024_ref_dec(uint8_t *ss, const uint8_t *ct, const uint8_t *sk);
+int pqcrystals_kyber1024_ref_encrypt(uint8_t *ct, uint8_t *ss, const uint8_t *pk);
 
 #define pqcrystals_kyber1024_90s_ref_SECRETKEYBYTES pqcrystals_kyber1024_SECRETKEYBYTES
 #define pqcrystals_kyber1024_90s_ref_PUBLICKEYBYTES pqcrystals_kyber1024_PUBLICKEYBYTES
@@ -71,5 +76,6 @@ int pqcrystals_kyber1024_ref_dec(uint8_t *ss, const uint8_t *ct, const uint8_t *
 int pqcrystals_kyber1024_90s_ref_keypair(uint8_t *pk, uint8_t *sk);
 int pqcrystals_kyber1024_90s_ref_enc(uint8_t *ct, uint8_t *ss, const uint8_t *pk);
 int pqcrystals_kyber1024_90s_ref_dec(uint8_t *ss, const uint8_t *ct, const uint8_t *sk);
+int pqcrystals_kyber1024_90s_ref_encrypt(uint8_t *ct, uint8_t *ss, const uint8_t *pk);
 
 #endif
