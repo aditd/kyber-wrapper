@@ -69,8 +69,8 @@ libpqcrystals_kyber512_ref.dylib: $(SOURCES) $(HEADERS) symmetric-shake.c fips20
 	$(CC) -dynamiclib -fPIC $(CFLAGS) -DKYBER_K=2 \
 	  -o $@ $(SOURCES) symmetric-shake.c fips202.c randombytes.c
 
-libpqcrystals_kyber512_ref.so: $(SOURCES) $(HEADERS) symmetric-shake.c
-	$(CC) -shared -fPIC $(CFLAGS) -DKYBER_K=2 $(SOURCES) symmetric-shake.c -o libpqcrystals_kyber512_ref.so
+libpqcrystals_kyber512_ref.so: $(SOURCES) $(HEADERS) symmetric-shake.c fips202.c randombytes.c
+	$(CC) -shared -fPIC $(CFLAGS) -DKYBER_K=2 $(SOURCES) symmetric-shake.c fips202.c randombytes.c -o libpqcrystals_kyber512_ref.so
 
 libpqcrystals_kyber768_ref.so: $(SOURCES) $(HEADERS) symmetric-shake.c
 	$(CC) -shared -fPIC $(CFLAGS) -DKYBER_K=3 $(SOURCES) symmetric-shake.c -o libpqcrystals_kyber768_ref.so

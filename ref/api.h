@@ -16,6 +16,7 @@
 int pqcrystals_kyber512_ref_keypair(uint8_t *pk, uint8_t *sk);
 int pqcrystals_kyber512_ref_enc(uint8_t *ct, uint8_t *ss, const uint8_t *pk);
 int pqcrystals_kyber512_ref_encrypt(uint8_t *ct, uint8_t *ss, const uint8_t *pk);
+int pqcrystals_kyber512_ref_decrypt(uint8_t *ss, uint8_t *ct, const uint8_t *sk);
 int pqcrystals_kyber512_ref_dec(uint8_t *ss, const uint8_t *ct, const uint8_t *sk);
 
 #define pqcrystals_kyber512_90s_ref_SECRETKEYBYTES pqcrystals_kyber512_SECRETKEYBYTES

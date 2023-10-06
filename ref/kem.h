@@ -38,6 +38,11 @@ int crypto_kem_enc(uint8_t *ct, uint8_t *ss, const uint8_t *pk);
 #define crypto_kem_encrypt KYBER_NAMESPACE(encrypt)
 int crypto_kem_encrypt(uint8_t *ct, uint8_t *ss, const uint8_t *pk);
 
+#define crypto_kem_decrypt KYBER_NAMESPACE(decrypt)
+int crypto_kem_decrypt(uint8_t *ss,
+                   uint8_t *ct,
+                   const uint8_t *sk);
+
 #define crypto_kem_dec KYBER_NAMESPACE(dec)
 int crypto_kem_dec(uint8_t *ss, const uint8_t *ct, const uint8_t *sk);
 
