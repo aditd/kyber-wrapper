@@ -20,7 +20,7 @@
 *
 * Returns 0 (success)
 **************************************************/
-int crypto_kem_keypair(uint8_t *pk,
+EXPORT_ATTR int crypto_kem_keypair(uint8_t *pk,
                        uint8_t *sk)
 {
   size_t i;
@@ -48,7 +48,7 @@ int crypto_kem_keypair(uint8_t *pk,
 *
 * Returns 0 (success)
 **************************************************/
-int crypto_kem_enc(uint8_t *ct,
+EXPORT_ATTR int crypto_kem_enc(uint8_t *ct,
                    uint8_t *ss,
                    const uint8_t *pk)
 {
@@ -77,7 +77,7 @@ int crypto_kem_enc(uint8_t *ct,
   return 0;
 }
 
-int crypto_kem_encrypt(uint8_t *ct,
+EXPORT_ATTR int crypto_kem_encrypt(uint8_t *ct,
                    uint8_t *ss,
                    const uint8_t *pk)
 {
@@ -100,7 +100,7 @@ int crypto_kem_encrypt(uint8_t *ct,
   return 0;
 }
 
-int crypto_kem_decrypt(uint8_t *ss,
+EXPORT_ATTR int crypto_kem_decrypt(uint8_t *ss,
                    uint8_t *ct,
                    const uint8_t *sk)
 {
@@ -126,7 +126,7 @@ int crypto_kem_decrypt(uint8_t *ss,
 *
 * On failure, ss will contain a pseudo-random value.
 **************************************************/
-int crypto_kem_dec(uint8_t *ss,
+EXPORT_ATTR int crypto_kem_dec(uint8_t *ss,
                    const uint8_t *ct,
                    const uint8_t *sk)
 {
